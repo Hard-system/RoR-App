@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @reservation.customer.last_name %>
+</p>
+
+<p>
+  <strong>Cruise:</strong>
+  <%= @reservation.cruise.name %>
+</p>
+
+<h4>These cabins are included in this reservation:</h4>
+<% @reservation.cabins.each do |cabin|%>
+<p> <%=cabin.name %> with
+<%=cabin.beds %> beds
+on deck <%=cabin.deck%> of the
+<%=Ship.find(cabin.ship_id).name%>
+</p> <%end%>
+
+<p><%= link_to 'Make a payment', payments_path %></p>
+
+<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
+<%= link_to 'Back', reservations_path %>

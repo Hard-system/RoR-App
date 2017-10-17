@@ -1,0 +1,37 @@
+<%= form_for(cabin) do |f| %>
+  <% if cabin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cabin.errors.count, "error") %> prohibited this cabin from being saved:</h2>
+
+      <ul>
+      <% cabin.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :beds %>
+    <%= f.number_field :beds %>
+  </div>
+
+  <div class="field">
+    <%= f.label :deck %>
+    <%= f.number_field :deck %>
+  </div>
+
+  <div class="field">
+    <em><%= f.label :ship_id %></em>
+     <%= f.collection_radio_buttons( :ship_id, @ships, :id, :name ) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

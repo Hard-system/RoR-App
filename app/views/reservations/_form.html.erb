@@ -1,0 +1,43 @@
+<%= form_for(reservation) do |f| %>
+  <% if reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+      <ul>
+      <% reservation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :customer_id %>
+    <%= f.collection_select( :customer_id, @customers, :id, :last_name ) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cruise_id %>
+    <%= f.text_field :cruise_id %>
+  </div>
+  
+  <h4>Pick a cabin</h4>
+<table>
+<tr>
+<th>Cabin</th><th>Deck</th><th>Beds</th>
+</tr>
+<% for cabin in @cabins %>
+<tr>
+<td><%=h cabin.name%></td>
+<td><%=h cabin.beds %></td>
+<td><%=h cabin.deck %></td>
+<td><%= radio_button('cabin', 'cabin_id', "#{cabin.id}") %></td>
+</tr>
+
+<% end %>
+</table>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

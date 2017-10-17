@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @customer.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @customer.last_name %>
+</p>
+
+<p>
+  <strong>Has good credit:</strong>
+  <%= @customer.has_good_credit %>
+</p>
+
+<p>
+  <strong>Paid:</strong>
+  <%= @customer.paid %>
+</p>
+
+<p> <b>Address:</b>
+<%= "#{@customer.address.street}" %>,
+<%= "#{@customer.address.city}" %>
+<%= "#{@customer.address.postcode}" %>
+
+<%= link_to 'Edit', edit_address_path( @customer.address.id ) %><br>
+</p>
+
+<p>
+<b>Credit Cards:</b> </p>
+<% @customer.credit_cards.each do |cc| %>
+<p>
+<%= cc.number %>
+<%= cc.name_on_card %>
+<%= cc.organisation %>
+<%= cc.exp_date %>
+</p>
+<% end %>
+<p><%= link_to 'Add a Credit Card', new_credit_card_path(:customer_id => @customer) %></p>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>

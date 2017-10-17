@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cabin.name %>
+</p>
+
+<p>
+  <strong>Beds:</strong>
+  <%= @cabin.beds %>
+</p>
+
+<p>
+  <strong>Deck:</strong>
+  <%= @cabin.deck %>
+</p>
+
+<p>
+  <strong>Ship:</strong>
+  <%= @cabin.ship.name %>
+</p>
+
+<%= link_to 'Edit', edit_cabin_path(@cabin) %> |
+<%= link_to 'Back', cabins_path %>

@@ -1,0 +1,36 @@
+
+<h1>Travelagent Dashboard</h1>
+<p>This is the info you need to know as admin</p> 
+
+ <div id="container" style="width:100%; height:400px;"></div>
+ 
+ <script type="text/javascript">
+        $(function () { 
+    var myChart = Highcharts.chart('container', {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Cruise Bookings'
+        },
+        xAxis: {
+            categories: <%=raw @cruise_names %>
+        },
+        yAxis: {
+            title: {
+                text: 'Cabins Booked'
+            },
+            tickInterval: 1
+        },
+        series: [{
+            name: 'Cabins Available',
+            data: <%=raw @cabins_available %>
+        }, {
+            name: 'Cabins Booked',
+            data: <%=raw @bookings %>
+        }]
+    });
+});
+ </script>
+ 
+<p>Reservation_groups: <%= @reservation_groups %></p>

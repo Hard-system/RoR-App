@@ -1,0 +1,27 @@
+<%= form_for(cruise) do |f| %>
+  <% if cruise.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cruise.errors.count, "error") %> prohibited this cruise from being saved:</h2>
+
+      <ul>
+      <% cruise.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <em><%= f.label :ship_id %></em>
+     <%= f.collection_radio_buttons( :ship_id, @ships, :id, :name ) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

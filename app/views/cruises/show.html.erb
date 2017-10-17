@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cruise.name %>
+</p>
+
+<p>
+  <strong>Ship:</strong>
+  <%= @cruise.ship.name %>
+</p>
+
+<p><%= link_to 'Add a Reservation', new_reservation_path(:cruise_id => @cruise) %> <p>
+
+<%= link_to 'Edit', edit_cruise_path(@cruise) %> |
+<%= link_to 'Back', cruises_path %>
+
+<h4>Reservations</h4>
+
+<% @cruise.reservations.each do |res|
+ @customer = Customer.find(res.customer_id)
+ %>
+<p>
+<%=@customer.first_name %> <%=@customer.last_name %> reserved on <%=res.created_at %>
+</p>
+
+<% end %>
